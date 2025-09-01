@@ -12,6 +12,10 @@ Route::get('/resultado', function () {
     return view('resultado');
 });
 
+Route::get('/biblioteca', function () {
+    return view('biblioteca');
+});
+
 Route::post('/libros', [BibliotecaController::class, 'registrarLibro']);
 Route::post('/usuarios', [BibliotecaController::class, 'registrarUsuario']);
 Route::post('/prestamos', [BibliotecaController::class, 'realizarPrestamo']);

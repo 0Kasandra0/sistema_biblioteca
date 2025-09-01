@@ -16,16 +16,16 @@ class BibliotecaController extends Controller
             'titulo' => $request->input('titulo'),
             'autor'  => $request->input('autor'),
         ]);
-        return response()->json(["message" => "Libro registrado con éxito", "data" => $libro]);
-    }
+        return redirect()->back()->with('success', "📚 Libro '{$libro->titulo}' registrado con éxito.");
+}
 
  // Registrar usuario
     public function registrarUsuario(Request $request) {
         $usuario = Usuario::create([
             'nombre' => $request->input('nombre'),
         ]);
-        return response()->json(["message" => "Usuario registrado con éxito", "data" => $usuario]);
-    }
+       return redirect()->back()->with('success', "📚 usuario '{$usuario->nombre}' registrado con éxito.");
+}
 
     // Realizar préstamo
     public function realizarPrestamo(Request $request) {
@@ -43,8 +43,8 @@ class BibliotecaController extends Controller
 
                 $libro->update(['disponible' => false]);
 
-        return response()->json(["message" => "Préstamo realizado con éxito", "data" => $prestamo]);
-    }
+        return redirect()->back()->with('success', "📚 Préstamo '{$prestamo->prestamo}' registrado con éxito.");
+}
 
     // Devolver libro
     public function devolverLibro(Request $request) {
@@ -57,8 +57,8 @@ class BibliotecaController extends Controller
         $libro->update(['disponible' => true]);
         $prestamo->delete();
 
-        return response()->json(["message" => "Libro devuelto con éxito"]);
-    }
+        return redirect()->back()->with('success', "📚 Libro '{$libro->devolverlibro}' devuelto con éxito.");
+}
 
      // Ver préstamos
     public function verPrestamos() {
